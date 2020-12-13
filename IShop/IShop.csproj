@@ -309,6 +309,16 @@
     <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\IShop.BusinessLogic\IShop.BusinessLogic.csproj">
+      <Project>{b75f8a2a-c086-4497-a589-12b3723028b3}</Project>
+      <Name>IShop.BusinessLogic</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\IShop.Domain\IShop.Domain.csproj">
+      <Project>{f2da102c-96f6-409a-b327-b67ed188bad8}</Project>
+      <Name>IShop.Domain</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
