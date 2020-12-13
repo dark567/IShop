@@ -24,10 +24,16 @@ namespace IShop.Controllers
         }
 
         [HttpPost]
-        public IHttpActionResult Add([FromBody] Product product) //[FromBody] означает что из тела запроса а не из заголовка
+        public HttpResponseMessage Add([FromBody] Product product) //[FromBody] означает что из тела запроса а не из заголовка
         {
+            if (!ModelState.IsReadOnly)
+            {
+                var errorMessage = new HttpResponseMessage(HttpStatusCode.BadRequest);
+                errorMessage.Content = new StringContent("Name can't be empty");
+                return errorMessage;
+            }
             _productService.Add(product);
-            return Ok();
+            return new HttpResponseMessage(HttpStatusCode.OK);
         }
 
         [HttpPut]

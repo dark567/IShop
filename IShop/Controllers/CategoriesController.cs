@@ -1,10 +1,5 @@
 ﻿using IShop.BusinessLogic.Services;
 using IShop.Domain.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
 
 namespace IShop.Controllers
@@ -31,6 +26,9 @@ namespace IShop.Controllers
         [HttpPost]
         public IHttpActionResult Add([FromBody] Category category) //[FromBody] означает что из тела запроса а не из заголовка
         {
+            if (string.IsNullOrEmpty(category.Name))
+                return Ok("Can't be empty");
+
             _categoryService.Add(category);
             return Ok();
         }
