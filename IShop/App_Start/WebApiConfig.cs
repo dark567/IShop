@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Routing.Constraints;
 using Microsoft.Owin.Security.OAuth;
 using Newtonsoft.Json.Serialization;
 
@@ -25,7 +26,7 @@ namespace IShop
             config.SuppressDefaultHostAuthentication();
             config.Filters.Add(new HostAuthenticationFilter(OAuthDefaults.AuthenticationType));
 
-            // Маршруты Web API
+            // Web API routes
             config.MapHttpAttributeRoutes();
 
             config.Routes.MapHttpRoute(
@@ -33,6 +34,18 @@ namespace IShop
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
+
+            config.Routes.MapHttpRoute(
+                name: "SearchRoute",
+                routeTemplate: "api/{controller}/{action}/{param}",
+                defaults: new
+                {
+                    param = RouteParameter.Optional
+                },
+                constraints: new
+                {
+                    action = new AlphaRouteConstraint()
+                });
         }
     }
 }

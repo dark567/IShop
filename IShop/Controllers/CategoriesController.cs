@@ -1,26 +1,33 @@
 ﻿using IShop.BusinessLogic.Services;
 using IShop.Domain.Models;
+using IShop.Filters;
+using System.Linq;
 using System.Web.Http;
 
 namespace IShop.Controllers
 {
+    [RoutePrefix("api/categories")]
     public class CategoriesController : ApiController
     {
         private ICategoryService _categoryService = new CategoryService();
 
+        [ShowAuthenticalFilter]
         [HttpGet]
         public IHttpActionResult GetAll()
         {
             return Ok(_categoryService.GetAll());
         }
 
+        [ShowAuthenticalFilter]
         [HttpGet]
         public IHttpActionResult Get(int id)
         {
             var category = _categoryService.Get(id);
+
             if (category == null)
                 return NotFound();
-            return Ok();
+
+            return Ok(category);
         }
 
         [HttpPost]
@@ -44,6 +51,17 @@ namespace IShop.Controllers
         {
             _categoryService.Delete(id);
             return Ok();
+        }
+
+        [HttpGet]
+        [Route("search/{param}")]
+        public IHttpActionResult Search(string name)
+        {
+            var categories = _categoryService.GetAll();
+
+            categories = categories.Where(c => c.Name.ToLower().Contains(name)).ToList();
+
+            return Ok(categories);
         }
     }
 }
