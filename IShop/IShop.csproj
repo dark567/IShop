@@ -217,7 +217,11 @@
     <Compile Include="Controllers\OrdersController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
+    <Compile Include="Filters\ExtendedActionFilter.cs" />
+    <Compile Include="Filters\ShopAuthorizationFilter.cs" />
+    <Compile Include="Filters\ShopExceptionFilter.cs" />
     <Compile Include="Filters\ShowAuthenticalFilter.cs" />
+    <Compile Include="Filters\SimpleActionFilter.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

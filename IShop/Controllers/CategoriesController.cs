@@ -1,6 +1,7 @@
 ﻿using IShop.BusinessLogic.Services;
 using IShop.Domain.Models;
 using IShop.Filters;
+using System;
 using System.Linq;
 using System.Web.Http;
 
@@ -11,14 +12,21 @@ namespace IShop.Controllers
     {
         private ICategoryService _categoryService = new CategoryService();
 
-        [ShowAuthenticalFilter]
+        //[ShowAuthenticalFilter]
+        //[SimpleActionFilter]
+        //[ShopAuthorizationFilter]
+        //[ExtendedActionFilter]
+        [ShopExceptionFilter]
         [HttpGet]
         public IHttpActionResult GetAll()
         {
+            throw new IndexOutOfRangeException();
+
             return Ok(_categoryService.GetAll());
         }
 
         [ShowAuthenticalFilter]
+        //[ShopAuthorizationFilter]
         [HttpGet]
         public IHttpActionResult Get(int id)
         {
