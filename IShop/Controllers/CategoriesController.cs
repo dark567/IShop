@@ -17,10 +17,11 @@ namespace IShop.Controllers
         //[ShopAuthorizationFilter]
         //[ExtendedActionFilter]
         [ShopExceptionFilter]
+        [OverrideAuthentication] //disable global ShowAuthenticalFilter
         [HttpGet]
         public IHttpActionResult GetAll()
         {
-            throw new IndexOutOfRangeException();
+            //throw new IndexOutOfRangeException();
 
             return Ok(_categoryService.GetAll());
         }

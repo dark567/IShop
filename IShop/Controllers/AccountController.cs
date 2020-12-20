@@ -320,6 +320,7 @@ namespace IShop.Controllers
 
         // POST api/Account/Register
         [AllowAnonymous]
+        [OverrideAuthentication]
         [Route("Register")]
         public async Task<IHttpActionResult> Register(RegisterBindingModel model)
         {

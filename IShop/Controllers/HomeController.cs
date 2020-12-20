@@ -14,5 +14,11 @@ namespace IShop.Controllers
 
             return View();
         }
+
+        [OverrideAuthentication]
+        public ActionResult Register()
+        {
+            return View();
+        }
     }
 }
